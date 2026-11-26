@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.example.fullstackmall</groupId>
+        <artifactId>fullstack-mall-backend</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>fullstack-mall-contract</artifactId>
+    <packaging>jar</packaging>
+
+    <name>fullstack-mall-contract</name>
+    <description>对外请求/响应 DTO、枚举、Facade 接口定义；不依赖任何实现模块</description>
+
+    <dependencies>
+        <!-- 只允许放校验注解这类“纯契约”依赖，禁止 web / mybatis / redis -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+    </dependencies>
+</project>

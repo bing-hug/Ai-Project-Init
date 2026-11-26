@@ -1,0 +1,16 @@
+# 本地开发配置。当前只有 web 依赖，下面这些数据源配置在接入
+# spring-boot-starter-jdbc / mybatis-plus 后才会真正生效（对应根目录 docker-compose.dev.yml）。
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3308/fullstack_mall?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai}
+    username: ${DB_USERNAME:mall}
+    password: ${DB_PASSWORD:mall_dev_password}
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: ${REDIS_TIMEOUT:2s}
+
+logging:
+  level:
+    com.example.fullstackmall: DEBUG
