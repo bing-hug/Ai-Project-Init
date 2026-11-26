@@ -20,7 +20,7 @@
 | 项 | 实际值 |
 | --- | --- |
 | 框架 | Vue 3.5（Composition API + `<script setup lang="ts">`） |
-| 构建 | Vite 7，`base: './'` |
+| 构建 | Vite 7，`base: '/'`，产物 `dist/` |
 | 语言 | TypeScript 5.8，`strict: true` |
 | UI | Element Plus 2.14（全自动导入） |
 | 样式 | UnoCSS（原子类）+ Sass/SCSS（`<style scoped lang="scss">`） |
@@ -180,7 +180,7 @@ types/              unplugin 自动生成的 auto-imports.d.ts 等，**禁止手
 
 ## 7. 路由
 
-- hash 模式（`createWebHashHistory`），`base: './'`，可部署到任意子目录。
+- hash 模式（`createWebHashHistory`），`base: '/'`，由 Nginx 托管在站点根目录。
 - 路由写在 `src/router/index.ts` 的 `staticRoutes`。
 - keep-alive：路由 `name` 必须与组件 `name` 一致，进页面 `useKeepAliveStore().addKeepAliveRoute(name)`，
   离开时 `removeKeepAliveRoute(name)`。
@@ -207,8 +207,9 @@ export const useXxxStore = defineStore('xxx', () => {
 ## 9. 请求
 
 - axios 只允许出现在 `src/api/`。
-- 开发代理：`/api` → `VITE_API_BASE_URL`，并自动去掉 `/api` 前缀。
-  **代码里只写 `/api/xxx`**，不要拼域名、不要写 `http://`。
+- 开发代理：`/api` → `VITE_API_PROXY_TARGET`（默认 `http://localhost:8080`），**必须原样转发**，
+  不做 rewrite。后端接口本身就以 `/api` 开头，删前缀会 404。
+  **代码里只写 `/api/xxx`**，不要拼域名、不要写 `http://`；生产由 Nginx 同源转发。
 - 函数必须有明确返回类型，响应结构定义在 `src/types/index.ts`。
 - 异步必须有 `try/catch` 或 `.catch()`；错误提示面向用户，不透出堆栈。
 
@@ -218,13 +219,13 @@ export const useXxxStore = defineStore('xxx', () => {
 
 | 文件 | 生效时机 | 用途 |
 | --- | --- | --- |
-| `.env` | 始终 | `VITE_APP_VERSION`（控制台版本号、打包目录名都取自它） |
-| `.env.dev` | `npm run dev` | `VITE_API_BASE_URL` |
-| `.env.prod` | `npm run build` | 生产 `VITE_API_BASE_URL` |
+| `.env` | 始终 | `VITE_APP_VERSION`（控制台版本号）、`VITE_API_BASE_URL`（留空）、`VITE_API_PROXY_TARGET`（开发代理地址） |
+| `.env.dev` | `npm run dev` | 开发环境代理地址 |
+| `.env.prod` | `npm run build` | 生产留空 `VITE_API_BASE_URL`，走 Nginx 同源 |
 
 - 新增变量必须 `VITE_` 开头，并在 `src/vite-env.d.ts` 的 `ImportMetaEnv` 补声明。
 - `__BUILD_TIME__` 由 `vite.config.ts` 的 `define` 注入，已在 d.ts 声明。
-- 产物目录 `customBuildName-<VITE_APP_VERSION>`，已被 `.gitignore` 忽略。
+- 产物目录固定 `dist/`，已被 `.gitignore` 忽略；不再按版本号生成目录名。
 
 ---
 

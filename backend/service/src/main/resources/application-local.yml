@@ -2,7 +2,7 @@
 # spring-boot-starter-jdbc / mybatis-plus 后才会真正生效（对应根目录 docker-compose.dev.yml）。
 spring:
   datasource:
-    url: ${DB_URL:jdbc:mysql://localhost:3308/fullstack_mall?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai}
+    url: ${DB_URL:jdbc:mysql://localhost:3308/aiproject_init?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai}
     username: ${DB_USERNAME:mall}
     password: ${DB_PASSWORD:mall_dev_password}
   data:
@@ -13,4 +13,4 @@ spring:
 
 logging:
   level:
-    com.example.fullstackmall: DEBUG
+    com.aiproject.init: DEBUG

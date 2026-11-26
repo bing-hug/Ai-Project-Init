@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.example.fullstackmall</groupId>
-        <artifactId>fullstack-mall-backend</artifactId>
+        <groupId>com.aiproject.init</groupId>
+        <artifactId>aiproject-init-backend</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>fullstack-mall-contract</artifactId>
+    <artifactId>aiproject-init-contract</artifactId>
     <packaging>jar</packaging>
 
-    <name>fullstack-mall-contract</name>
+    <name>aiproject-init-contract</name>
     <description>对外请求/响应 DTO、枚举、Facade 接口定义；不依赖任何实现模块</description>
 
     <dependencies>

@@ -1,22 +1,22 @@
 # 生产/联调形态：Nginx 同源部署，前端静态资源 + /api 反代到后端
 # 启动：docker compose -f docker-compose.prod.yml up -d --build
 # 访问：http://localhost:8088
-name: fullstack-mall
+name: aiproject-init
 
 services:
   mysql:
     image: mysql:8.4
-    container_name: fullstack-mall-mysql
+    container_name: aiproject-init-mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-fullstack_dev_root_password}
-      MYSQL_DATABASE: fullstack_mall
+      MYSQL_DATABASE: aiproject_init
       MYSQL_USER: mall
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mall_dev_password}
       TZ: Asia/Shanghai
     ports:
       - "3308:3306"
     volumes:
-      - fullstack-mall-mysql-data:/var/lib/mysql
+      - aiproject-init-mysql-data:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${MYSQL_ROOT_PASSWORD:-fullstack_dev_root_password}"]
@@ -27,11 +27,11 @@ services:
 
   redis:
     image: redis:7.4-alpine
-    container_name: fullstack-mall-redis
+    container_name: aiproject-init-redis
     ports:
       - "6379:6379"
     volumes:
-      - fullstack-mall-redis-data:/data
+      - aiproject-init-redis-data:/data
     command: ["redis-server", "--appendonly", "yes"]
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -43,9 +43,9 @@ services:
   backend:
     build:
       context: ./backend
-    container_name: fullstack-mall-backend
+    container_name: aiproject-init-backend
     environment:
-      DB_URL: jdbc:mysql://mysql:3306/fullstack_mall?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+      DB_URL: jdbc:mysql://mysql:3306/aiproject_init?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
       DB_USERNAME: mall
       DB_PASSWORD: ${MYSQL_PASSWORD:-mall_dev_password}
       REDIS_HOST: redis
@@ -61,7 +61,7 @@ services:
   frontend:
     build:
       context: ./frontend
-    container_name: fullstack-mall-frontend
+    container_name: aiproject-init-frontend
     ports:
       - "8088:80"
     volumes:
@@ -70,5 +70,5 @@ services:
       - backend
 
 volumes:
-  fullstack-mall-mysql-data:
-  fullstack-mall-redis-data:
+  aiproject-init-mysql-data:
+  aiproject-init-redis-data:

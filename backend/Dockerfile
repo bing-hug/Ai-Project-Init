@@ -12,6 +12,6 @@ RUN mvn -B -DskipTests package
 # 阶段二：只带运行所需的最小环境
 FROM eclipse-temurin:21-jre
 WORKDIR /app
-COPY --from=build /build/service/target/fullstack-mall-service-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /build/service/target/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/app.jar"]

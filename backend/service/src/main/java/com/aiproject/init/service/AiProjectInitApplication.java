@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FullstackMallApplication {
+public class AiProjectInitApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FullstackMallApplication.class, args);
+        SpringApplication.run(AiProjectInitApplication.class, args);
     }
 }

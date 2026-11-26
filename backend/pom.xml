@@ -11,12 +11,12 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.example.fullstackmall</groupId>
-    <artifactId>fullstack-mall-backend</artifactId>
+    <groupId>com.aiproject.init</groupId>
+    <artifactId>aiproject-init-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>fullstack-mall-backend</name>
+    <name>aiproject-init-backend</name>
     <description>多模块后端父工程：contract 存契约，service 存实现</description>
 
     <modules>
@@ -37,8 +37,8 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.example.fullstackmall</groupId>
-                <artifactId>fullstack-mall-contract</artifactId>
+                <groupId>com.aiproject.init</groupId>
+                <artifactId>aiproject-init-contract</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

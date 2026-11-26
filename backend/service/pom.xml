@@ -5,21 +5,21 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.example.fullstackmall</groupId>
-        <artifactId>fullstack-mall-backend</artifactId>
+        <groupId>com.aiproject.init</groupId>
+        <artifactId>aiproject-init-backend</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>fullstack-mall-service</artifactId>
+    <artifactId>aiproject-init-service</artifactId>
     <packaging>jar</packaging>
 
-    <name>fullstack-mall-service</name>
+    <name>aiproject-init-service</name>
     <description>Web 层 + 业务实现 + 持久层，唯一可执行模块</description>
 
     <dependencies>
         <dependency>
-            <groupId>com.example.fullstackmall</groupId>
-            <artifactId>fullstack-mall-contract</artifactId>
+            <groupId>com.aiproject.init</groupId>
+            <artifactId>aiproject-init-contract</artifactId>
         </dependency>
 
         <dependency>

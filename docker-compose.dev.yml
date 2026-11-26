@@ -1,17 +1,17 @@
 services:
   mysql:
     image: mysql:8.4
-    container_name: fullstack-mall-mysql
+    container_name: aiproject-init-mysql
     environment:
       MYSQL_ROOT_PASSWORD: fullstack_dev_root_password
-      MYSQL_DATABASE: fullstack_mall
+      MYSQL_DATABASE: aiproject_init
       MYSQL_USER: mall
       MYSQL_PASSWORD: mall_dev_password
       TZ: Asia/Shanghai
     ports:
       - "3308:3306"
     volumes:
-      - fullstack-mall-mysql-data:/var/lib/mysql
+      - aiproject-init-mysql-data:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pfullstack_dev_root_password"]
@@ -22,11 +22,11 @@ services:
 
   redis:
     image: redis:7.4-alpine
-    container_name: fullstack-mall-redis
+    container_name: aiproject-init-redis
     ports:
       - "6379:6379"
     volumes:
-      - fullstack-mall-redis-data:/data
+      - aiproject-init-redis-data:/data
     command: ["redis-server", "--appendonly", "yes"]
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -36,5 +36,5 @@ services:
       start_period: 5s
 
 volumes:
-  fullstack-mall-mysql-data:
-  fullstack-mall-redis-data:
+  aiproject-init-mysql-data:
+  aiproject-init-redis-data:

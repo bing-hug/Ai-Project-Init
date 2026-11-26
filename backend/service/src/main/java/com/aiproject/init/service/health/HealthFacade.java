@@ -10,7 +10,7 @@ public class HealthFacade implements IHealthFacade {
 
     private final String serviceName;
 
-    public HealthFacade(@Value("${spring.application.name:fullstack-mall-service}") String serviceName) {
+    public HealthFacade(@Value("${spring.application.name:aiproject-init-service}") String serviceName) {
         this.serviceName = serviceName;
     }
 

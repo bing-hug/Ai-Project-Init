@@ -1,6 +1,6 @@
 spring:
   application:
-    name: fullstack-mall-service
+    name: aiproject-init-service
   profiles:
     active: local
 
@@ -10,4 +10,4 @@ server:
 
 logging:
   level:
-    com.example.fullstackmall: INFO
+    com.aiproject.init: INFO

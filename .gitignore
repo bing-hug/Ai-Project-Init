@@ -24,6 +24,9 @@ frontend/dist/
 frontend/customBuildName*/
 frontend/*.log
 
+# 个人 AI 偏好（不入库）
+AGENTS.local.md
+
 # 本地环境变量和密钥文件（前端 .env 只放公开配置，需要入库）
 .env
 .env.*
