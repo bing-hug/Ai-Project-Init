@@ -1,0 +1,82 @@
+/* ============================================================
+ * 全局样式：只承载「布局 + 排版基线」
+ * 设计色值统一在 uno.config.ts，本文件不出现任何色值字面量。
+ * 改设计时：色/字号/圆角改 uno.config.ts，字体族与横屏基线改这里。
+ * ============================================================ */
+
+:root {
+  font-family: system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+#app {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (orientation: portrait) {
+  /* 竖屏：整体旋转 90°，交换宽高 */
+  #app {
+    position: absolute;
+    width: 100vh;
+    height: 100vw;
+    top: 0;
+    left: 100vw;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    transform-origin: 0% 0%;
+  }
+  .top {
+    width: 100%;
+    height: 60px;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  /* 横屏：铺满视口 */
+  #app {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+  .top {
+    width: 100%;
+    height: 60px;
+  }
+}
+
+/* 全局隐藏滚动条 */
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
