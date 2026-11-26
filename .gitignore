@@ -17,10 +17,20 @@ backend/.m2-repository/
 .trellis/
 .agents/
 .codex/
-# 本地环境变量和密钥文件
+
+# 前端构建产物与依赖
+frontend/node_modules/
+frontend/dist/
+frontend/customBuildName*/
+frontend/*.log
+
+# 本地环境变量和密钥文件（前端 .env 只放公开配置，需要入库）
 .env
 .env.*
 !.env.example
+!frontend/.env
+!frontend/.env.dev
+!frontend/.env.prod
 *.pem
 *.key
 *.p12
